@@ -1,0 +1,9 @@
+.color-container {
+  width: 12rem;
+  height: 12rem;
+  margin: 0.5rem;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  /* border-radius: 0.5rem; */
+}
