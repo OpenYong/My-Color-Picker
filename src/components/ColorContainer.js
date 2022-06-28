@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ColorContainer.module.css";
 
 const ColorContainer = (props) => {
+  const { colorName, colorCode } = props;
   return (
     <div
       style={{
@@ -9,8 +10,10 @@ const ColorContainer = (props) => {
       }}
       className={styles["color-container"]}
     >
-      <span>{props.colorName}</span>
-      <span>more</span>
+      <div className={styles["color-name"]}>
+        <span>{colorName}</span>
+      </div>
+      <button className={styles["copy-btn"]}>Pick!</button>
     </div>
   );
 };
