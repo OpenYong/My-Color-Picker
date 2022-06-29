@@ -4,12 +4,16 @@ import styles from "./Palette.module.css";
 
 const Palette = (props) => {
   const { colors, emoji, id, paletteName } = props;
-  console.log(colors);
+  //   console.log(colors);
   return (
     <div className={styles.palette}>
       <div className={styles["palette-colors"]}>
         {colors.map((color) => (
-          <ColorContainer colorName={color.name} colorCode={color.color} />
+          <ColorContainer
+            key={color.color}
+            colorName={color.name}
+            colorCode={color.color}
+          />
         ))}
       </div>
     </div>
