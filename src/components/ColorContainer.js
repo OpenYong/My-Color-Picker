@@ -10,34 +10,39 @@ const ColorContainer = (props) => {
 
   const pickedColorInput = useRef();
 
-  //   const copyHandler = () => {
-  //     setIsCopied(isCopied);
-  //   };
-
   const onChangeHandler = () => {
-    setIsPicked((prevState) => !prevState);
+    setIsPicked(pickedColorInput.current.checked);
+  };
+
+  const onBlurHandler = () => {
+    setIsPicked(false);
   };
 
   return (
-    <CopyToClipboard text={colorCode}>
+    <CopyToClipboard text={colorCode} onCopy={onChangeHandler}>
       <div
         style={{
           background: props.colorCode,
         }}
-        className={`${styles["color-container"]} ${isPicked && styles.picked}`}
+        className={`${styles["color-container"]}`}
       >
-        <div className={styles["color-name"]}>
-          <span>{colorName}</span>
+        <div className={`${isPicked && styles.picked}`}>
+          <div className={styles["color-name"]}>
+            <span>{colorName}</span>
+          </div>
+          <input
+            type="radio"
+            id={colorCode}
+            value={colorName}
+            name="main-colors"
+            ref={pickedColorInput}
+            onBlur={onBlurHandler}
+          />
+          <label
+            htmlFor={colorCode}
+            className={`${styles["copy-btn"]} ${isPicked && styles.picked}`}
+          ></label>
         </div>
-        <input
-          type="radio"
-          id={colorCode}
-          value={colorName}
-          name="main-colors"
-          ref={pickedColorInput}
-          onChange={onChangeHandler}
-        />
-        <label for={colorCode} className={styles["copy-btn"]}></label>
       </div>
     </CopyToClipboard>
   );
