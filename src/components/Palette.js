@@ -16,13 +16,26 @@ const Palette = (props) => {
 
   return (
     <div className={styles.palette}>
-      <Slider
-        defaultValue={level}
-        min={100}
-        max={900}
-        step={100}
-        onAfterChange={(value) => onLevelChangeHandelr(value)}
-      />
+      <div className={styles.slider}>
+        <Slider
+          defaultValue={level}
+          min={100}
+          max={900}
+          step={100}
+          onAfterChange={(value) => onLevelChangeHandelr(value)}
+          trackStyle={{
+            backgroundColor: "#90CAF9",
+            height: 8,
+          }}
+          railStyle={{
+            height: 8,
+          }}
+          handleStyle={{
+            backgroundColor: "#90CAF9",
+            marginTop: -4,
+          }}
+        />
+      </div>
       <div className={styles["palette-colors"]}>
         {colors[level].map((color) => (
           <ColorContainer
