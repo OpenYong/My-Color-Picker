@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 4rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+  font-size: 24px;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.slider {
+  width: 20rem;
+  margin: 1rem;
+}

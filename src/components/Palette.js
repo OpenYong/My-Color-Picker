@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ColorContainer from "./ColorContainer";
 import styles from "./Palette.module.css";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import Navbar from "./UI/Navbar";
 
 const Palette = (props) => {
   const [level, setLevel] = useState(500);
@@ -16,26 +15,7 @@ const Palette = (props) => {
 
   return (
     <div className={styles.palette}>
-      <div className={styles.slider}>
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onAfterChange={(value) => onLevelChangeHandelr(value)}
-          trackStyle={{
-            backgroundColor: "#90CAF9",
-            height: 8,
-          }}
-          railStyle={{
-            height: 8,
-          }}
-          handleStyle={{
-            backgroundColor: "#90CAF9",
-            marginTop: -4,
-          }}
-        />
-      </div>
+      <Navbar level={level} onChangeLevel={onLevelChangeHandelr} />
       <div className={styles["palette-colors"]}>
         {colors[level].map((color) => (
           <ColorContainer
