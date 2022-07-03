@@ -1,13 +1,16 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Palette from "./components/Palette";
-import dummyData from "./dummy-data";
-import { generatePalette } from "./util/colorHelper";
+import MainPage from "./pages/MainPage";
+import PalettePage from "./pages/PalettePage";
 
 function App() {
   return (
     <React.Fragment>
-      <Palette palette={generatePalette(dummyData[0])} />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/palette/:paletteId" element={<PalettePage />} />
+      </Routes>
     </React.Fragment>
   );
 }

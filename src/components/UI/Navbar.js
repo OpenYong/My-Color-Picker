@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "./Navbar.module.css";
@@ -18,7 +19,7 @@ const Navbar = (props) => {
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="#">My Colors</a>
+        <Link to={"/"}>My Colors</Link>
       </div>
       <div className={styles["control-container"]}>
         <div className={styles.slider}>
