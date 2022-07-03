@@ -5,23 +5,33 @@ import Navbar from "./UI/Navbar";
 
 const Palette = (props) => {
   const [level, setLevel] = useState(500);
+  const [colorFormat, setColorFormat] = useState("hex");
 
   const { colors, emoji, id, paletteName } = props.palette;
 
-  const onLevelChangeHandelr = (sliderLevel) => {
+  const levelChangeHandler = (sliderLevel) => {
     console.log(sliderLevel);
     setLevel(sliderLevel);
   };
 
+  const formatChangeHandler = (formatValue) => {
+    setColorFormat(formatValue);
+  };
+
   return (
     <div className={styles.palette}>
-      <Navbar level={level} onChangeLevel={onLevelChangeHandelr} />
+      <Navbar
+        level={level}
+        colorFormat={colorFormat}
+        onChangeLevel={levelChangeHandler}
+        onChangeFormat={formatChangeHandler}
+      />
       <div className={styles["palette-colors"]}>
         {colors[level].map((color) => (
           <ColorContainer
             key={color.color}
             colorName={color.name}
-            colorCode={color.hex}
+            colorCode={color[colorFormat]}
           />
         ))}
       </div>

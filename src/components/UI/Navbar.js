@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "./Navbar.module.css";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 
 const Navbar = (props) => {
-  const { level, onChangeLevel } = props;
+  const { level, colorFormat, onChangeLevel, onChangeFormat } = props;
+
+  const selectChangeHandler = (event) => {
+    onChangeFormat(event.target.value);
+  };
 
   return (
     <header className={styles.navbar}>
@@ -32,6 +41,21 @@ const Navbar = (props) => {
           }}
         />
       </div>
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">색상 포맷</InputLabel>
+          <Select
+            value={colorFormat}
+            label="Color Format"
+            onChange={selectChangeHandler}
+          >
+            <MenuItem value="hex">HEX</MenuItem>
+            {/* <MenuItem value="#HEX">#HEX</MenuItem> */}
+            <MenuItem value="rgb">RGB</MenuItem>
+            <MenuItem value="rgba">RGBA</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
     </header>
   );
 };

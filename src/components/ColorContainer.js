@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./ColorContainer.module.css";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ColorContainer = (props) => {
   const { colorName, colorCode } = props;
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   const [isPicked, setIsPicked] = useState(false);
 
   const pickedColorInput = useRef();
