@@ -1,8 +1,4 @@
 .color-container {
-  width: 8rem;
-  height: 8rem;
-  /* margin: 0.5rem; */
-  display: inline-block;
   position: relative;
   cursor: pointer;
 }

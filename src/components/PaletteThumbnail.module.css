@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3rem;
+  gap: 1rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.palette-thumbnail {
+  padding: 1rem;
+  border: 1px solid red;
+  border-radius: 10px;
+}

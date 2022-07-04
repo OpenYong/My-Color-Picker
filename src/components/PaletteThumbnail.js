@@ -1,17 +1,25 @@
 import React from "react";
+import MiniPalette from "./MiniPalette";
+import styles from "./PaletteThumbnail.module.css";
+
+import { Link, useNavigate } from "react-router-dom";
 
 const PaletteThumbnail = (props) => {
   const { paletteList } = props;
-  console.log(paletteList);
+
+  let navigate = useNavigate();
+
   return (
-    <>
+    <div className={styles["container"]}>
       {paletteList.map((palette) => (
-        <div>
-          <h2>{palette.paletteName}</h2>
-          <div>Colors</div>
-        </div>
+        <Link to={`palette/${palette.id}`}>
+          <div className={styles["palette-thumbnail"]}>
+            <h2>{palette.paletteName}</h2>
+            <MiniPalette colors={palette.colors} />
+          </div>
+        </Link>
       ))}
-    </>
+    </div>
   );
 };
 
