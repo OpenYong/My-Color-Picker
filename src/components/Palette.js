@@ -36,6 +36,7 @@ const Palette = (props) => {
             key={color.color}
             colorName={color.name}
             colorCode={color[colorFormat]}
+            textColor={color.textColor}
           />
         ))}
       </div>

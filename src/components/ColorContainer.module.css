@@ -34,7 +34,15 @@
   bottom: 10px;
   left: 10px;
   text-transform: capitalize;
-  color: #fff;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.color-name--white {
+  color: white;
+}
+
+.color-name--black {
+  color: rgba(0, 0, 0, 0.9);
 }
 
 input[type="radio"] {

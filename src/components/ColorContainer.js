@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import styles from "./ColorContainer.module.css";
 
+import chroma from "chroma-js";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ColorContainer = (props) => {
   const { colorName, colorCode } = props;
-  // const [isCopied, setIsCopied] = useState(false);
   const [isPicked, setIsPicked] = useState(false);
 
   const pickedColorInput = useRef();
@@ -18,6 +18,9 @@ const ColorContainer = (props) => {
     setIsPicked(false);
   };
 
+  let isDark = chroma(colorCode).luminance() <= 0.1;
+  let isLight = chroma(colorCode).luminance() >= 0.8;
+
   return (
     <CopyToClipboard text={colorCode} onCopy={onChangeHandler}>
       <div
@@ -28,7 +31,14 @@ const ColorContainer = (props) => {
       >
         <div className={`${isPicked && styles.picked}`}>
           <div className={styles["color-name"]}>
-            <span>{colorName}</span>
+            <span
+              className={
+                (isDark && styles["color-name--white"]) ||
+                (isLight && styles["color-name--black"])
+              }
+            >
+              {colorName}
+            </span>
           </div>
           <input
             type="radio"

@@ -9,9 +9,11 @@ function generatePalette(initialPalette) {
     emoji: initialPalette.emoji,
     colors: {},
   };
+
   for (let level of levels) {
     newPalette.colors[level] = [];
   }
+
   for (let color of initialPalette.colors) {
     let scale = getScale(color.color, 10).reverse();
     for (let i in scale) {
@@ -27,6 +29,7 @@ function generatePalette(initialPalette) {
       });
     }
   }
+
   return newPalette;
 }
 
