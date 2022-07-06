@@ -1,0 +1,10 @@
+.new-palette {
+  width: 30rem;
+  height: 20rem;
+  display: flex;
+}
+
+.color-container {
+  width: 100%;
+  height: 100%;
+}
