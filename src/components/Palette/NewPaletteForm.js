@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./NewPaletteForm.module.css";
 import { HexColorPicker } from "react-colorful";
+import DraggableColorContainer from "./DraggableColorContainer";
 
 const NewPaletteForm = () => {
   const [colors, setColors] = useState([
@@ -42,12 +43,10 @@ const NewPaletteForm = () => {
     <div className={styles["main-container"]}>
       <div className={styles["new-palette"]}>
         {colors.map((color) => (
-          <div
-            id="colorBox1"
-            className={styles["color-container"]}
-            onClick={() => colorContainerClickHandler(color.color)}
-            style={{ backgroundColor: color.color }}
-          ></div>
+          <DraggableColorContainer
+            onClick={colorContainerClickHandler}
+            color={color.color}
+          />
         ))}
       </div>
       {isPickerOpen && (
