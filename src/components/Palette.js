@@ -11,6 +11,8 @@ const Palette = (props) => {
 
   const { colors, emoji, id, paletteName } = props.palette;
 
+  console.log(colors);
+
   const levelChangeHandler = (sliderLevel) => {
     console.log(sliderLevel);
     setLevel(sliderLevel);
