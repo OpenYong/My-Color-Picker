@@ -7,11 +7,20 @@
   justify-content: flex-end;
 }
 
+.color-background {
+  width: 100%;
+  position: relative;
+}
+
 .color-container__right {
   opacity: 0;
   transition: opacity 300ms ease-in;
   width: 2rem;
   height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .color-container__right:hover {
@@ -19,14 +28,18 @@
 }
 
 .add-btn {
-  position: absolute;
+  justify-content: center;
+  display: flex;
+  align-items: center;
   right: 0;
+  top: 50%;
   width: 2rem;
   height: 2rem;
   background-color: #fff;
   transform: scale(1);
   transition: transform 300ms ease-in;
   border-radius: 50%;
+  z-index: 100;
 }
 
 .add-btn:hover {
