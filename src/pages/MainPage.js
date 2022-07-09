@@ -1,12 +1,13 @@
 import React from "react";
 import PaletteThumbnail from "../components/PaletteThumbnail";
 import dummyData from "../dummy-data";
+import Header from "../components/Layout/Header";
 
 const MainPage = () => {
   const paletteList = dummyData;
   return (
     <>
-      <h1>My Colors</h1>
+      <Header />
       <PaletteThumbnail paletteList={paletteList} />
     </>
   );

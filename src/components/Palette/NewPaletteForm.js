@@ -30,10 +30,11 @@ const NewPaletteForm = () => {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [clickedColorBox, setClickedColorBox] = useState();
   const paletteNameInput = useRef();
+  const newPaletteInput = useRef();
 
   const colorContainerClickHandler = (dataIndex) => {
     setClickedColorBox(dataIndex);
-    setIsPickerOpen((prevState) => !prevState);
+    setIsPickerOpen(true);
   };
 
   const addColorClickHandler = (dataIndex) => {
@@ -84,9 +85,15 @@ const NewPaletteForm = () => {
     paletteNameInput.current.value = "";
   };
 
+  const outClickHandler = (e) => {
+    if (!newPaletteInput.current.contains(e.target)) {
+      setIsPickerOpen(false);
+    }
+  };
+
   return (
-    <div className={styles["main-container"]}>
-      <div className={styles["new-palette"]}>
+    <div className={styles["main-container"]} onClick={outClickHandler}>
+      <div className={styles["new-palette"]} ref={newPaletteInput}>
         {colors.map((color, index) => (
           <DraggableColorContainer
             key={Math.random().toString()}
@@ -98,12 +105,14 @@ const NewPaletteForm = () => {
           />
         ))}
       </div>
-      {isPickerOpen && (
-        <HexColorPicker
-          color={colors[clickedColorBox].color}
-          onChange={(color) => pickerHandler(color, clickedColorBox)}
-        />
-      )}
+      <div className={styles["react-colorfult-container"]}>
+        {isPickerOpen && (
+          <HexColorPicker
+            color={colors[clickedColorBox].color}
+            onChange={(color) => pickerHandler(color, clickedColorBox)}
+          />
+        )}
+      </div>
       <Box
         component="form"
         sx={{
