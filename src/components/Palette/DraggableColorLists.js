@@ -49,7 +49,7 @@ const DraggableColorLists = (props) => {
 
     let newColorArray = [...colors];
     newColorArray.splice(dataIndex + 1, 0, {
-      name: "New Color",
+      name: `New Color ${colors.length}`,
       color: chroma
         .scale([colors[dataIndex].color, targetScaleColor])
         .mode("lab")

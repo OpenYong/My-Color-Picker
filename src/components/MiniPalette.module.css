@@ -1,12 +1,14 @@
 .mini-palette {
   /* display: inline-block; */
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  /* grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr); */
   border-radius: 10px;
   overflow: hidden;
+  height: 10rem;
 }
 
 .color-container {
-  height: 4rem;
+  height: 100%;
+  width: 100%;
 }

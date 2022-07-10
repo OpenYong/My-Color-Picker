@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import styles from "./NewPaletteForm.module.css";
 
 import Box from "@mui/material/Box";
@@ -6,6 +6,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import DraggableColorLists from "./DraggableColorLists";
+
+import ColorsContext from "../../store/colors-context";
 
 const NewPaletteForm = () => {
   const [colors, setColors] = useState([
@@ -27,6 +29,7 @@ const NewPaletteForm = () => {
     },
   ]);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const colorsCtx = useContext(ColorsContext);
 
   const paletteNameInput = useRef();
   const newPaletteInput = useRef();
@@ -34,13 +37,16 @@ const NewPaletteForm = () => {
 
   const savePaletteHandler = (e) => {
     e.preventDefault();
+    if (paletteNameInput.current.value === "") {
+      return;
+    }
     const newPalette = {
       paletteName: paletteNameInput.current.value,
       id: paletteNameInput.current.value,
       emoji: "🎨",
       colors: colors,
     };
-    console.log(newPalette);
+    colorsCtx.addPalette(newPalette);
 
     paletteNameInput.current.value = "";
   };

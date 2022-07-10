@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PaletteThumbnail from "../components/PaletteThumbnail";
-import dummyData from "../dummy-data";
 import Header from "../components/Layout/Header";
 import Nav from "../components/Layout/Nav";
+import ColorsContext from "../store/colors-context";
 
 const MainPage = () => {
-  const paletteList = dummyData;
+  const ColorsCtx = useContext(ColorsContext);
+
   return (
     <>
       <Header />
-      <Nav />
-      <PaletteThumbnail paletteList={paletteList} />
+      <PaletteThumbnail paletteList={ColorsCtx.colors} />
     </>
   );
 };
