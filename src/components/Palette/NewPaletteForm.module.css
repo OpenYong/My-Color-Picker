@@ -3,18 +3,3 @@
   height: 100vh;
   padding-top: 3rem;
 }
-
-.new-palette {
-  width: 80%;
-  height: 20rem;
-  display: flex;
-  margin: 0 auto;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.main-container .react-colorfult-container {
-  position: absolute;
-  top: 200px;
-  right: 5%;
-}

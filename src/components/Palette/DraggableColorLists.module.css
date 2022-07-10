@@ -1,0 +1,14 @@
+.new-palette {
+  width: 80%;
+  height: 20rem;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.react-colorfult-container {
+  position: absolute;
+  top: 300px;
+  right: 5%;
+}

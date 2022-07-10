@@ -76,3 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - rc slider
 - Material UI
 - react-colorful
+- @dnd-kit/sortable

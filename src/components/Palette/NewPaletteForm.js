@@ -1,12 +1,11 @@
 import React, { useState, useRef } from "react";
 import styles from "./NewPaletteForm.module.css";
-import { HexColorPicker } from "react-colorful";
-import DraggableColorContainer from "./DraggableColorContainer";
-import chroma from "chroma-js";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+
+import DraggableColorLists from "./DraggableColorLists";
 
 const NewPaletteForm = () => {
   const [colors, setColors] = useState([
@@ -19,58 +18,19 @@ const NewPaletteForm = () => {
       color: "#373737",
     },
     {
-      name: "Your Color 2",
+      name: "Your Color 3",
       color: "#C15555",
     },
     {
-      name: "Your Color 2",
+      name: "Your Color 4",
       color: "#F1C7C7",
     },
   ]);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
-  const [clickedColorBox, setClickedColorBox] = useState();
+
   const paletteNameInput = useRef();
   const newPaletteInput = useRef();
-
-  const colorContainerClickHandler = (dataIndex) => {
-    setClickedColorBox(dataIndex);
-    setIsPickerOpen(true);
-  };
-
-  const addColorClickHandler = (dataIndex) => {
-    let targetScaleColor;
-    if (colors[dataIndex + 1] === undefined) {
-      targetScaleColor = "#000000";
-    } else {
-      targetScaleColor = colors[dataIndex + 1].color;
-    }
-
-    let newColorArray = [...colors];
-    newColorArray.splice(dataIndex + 1, 0, {
-      name: "New Color",
-      color: chroma
-        .scale([colors[dataIndex].color, targetScaleColor])
-        .mode("lab")
-        .colors(1)[0],
-    });
-    setColors(newColorArray);
-  };
-
-  const removeColorHandler = (dataIndex) => {
-    if (colors.length > 1) {
-      let newColorArray = [...colors];
-      newColorArray.splice(dataIndex, 1);
-      setColors(newColorArray);
-    } else {
-      return;
-    }
-  };
-
-  const pickerHandler = (color, clickedColorBox) => {
-    let newColorArray = [...colors];
-    newColorArray[clickedColorBox].color = color;
-    setColors(newColorArray);
-  };
+  const hexColorPicker = useRef();
 
   const savePaletteHandler = (e) => {
     e.preventDefault();
@@ -86,33 +46,23 @@ const NewPaletteForm = () => {
   };
 
   const outClickHandler = (e) => {
-    if (!newPaletteInput.current.contains(e.target)) {
+    if (hexColorPicker.current.contains(e.target)) {
+      setIsPickerOpen(true);
+    } else if (!newPaletteInput.current.contains(e.target)) {
       setIsPickerOpen(false);
     }
   };
 
   return (
     <div className={styles["main-container"]} onClick={outClickHandler}>
-      <div className={styles["new-palette"]} ref={newPaletteInput}>
-        {colors.map((color, index) => (
-          <DraggableColorContainer
-            key={Math.random().toString()}
-            dataIndex={index}
-            onColorPick={colorContainerClickHandler}
-            color={color.color}
-            onAddColor={addColorClickHandler}
-            onRemoveColor={removeColorHandler}
-          />
-        ))}
-      </div>
-      <div className={styles["react-colorfult-container"]}>
-        {isPickerOpen && (
-          <HexColorPicker
-            color={colors[clickedColorBox].color}
-            onChange={(color) => pickerHandler(color, clickedColorBox)}
-          />
-        )}
-      </div>
+      <DraggableColorLists
+        colors={colors}
+        onSetColors={setColors}
+        newPaletteInputRef={newPaletteInput}
+        hexColorPickerRef={hexColorPicker}
+        isPickerOpen={isPickerOpen}
+        setIsPickerOpen={setIsPickerOpen}
+      />
       <Box
         component="form"
         sx={{
