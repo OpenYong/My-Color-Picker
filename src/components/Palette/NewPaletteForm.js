@@ -6,10 +6,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import DraggableColorLists from "./DraggableColorLists";
+import EmojiPicker from "../EmojiPicker";
 
 import ColorsContext from "../../store/colors-context";
 
-const NewPaletteForm = () => {
+const NewPaletteForm = (props) => {
   const [colors, setColors] = useState([
     {
       name: "Your Color 1",
@@ -29,14 +30,19 @@ const NewPaletteForm = () => {
     },
   ]);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const colorsCtx = useContext(ColorsContext);
 
   const paletteNameInput = useRef();
+  const paletteEmojiInput = useRef();
   const newPaletteInput = useRef();
   const hexColorPicker = useRef();
 
   const savePaletteHandler = (e) => {
     e.preventDefault();
+    console.log(paletteEmojiInput.current === document.activeElement);
+    console.log(document.activeElement);
+
     if (paletteNameInput.current.value === "") {
       return;
     }
@@ -57,6 +63,10 @@ const NewPaletteForm = () => {
     } else if (!newPaletteInput.current.contains(e.target)) {
       setIsPickerOpen(false);
     }
+  };
+
+  const focusHandler = () => {
+    setIsFocused(true);
   };
 
   return (
@@ -84,6 +94,16 @@ const NewPaletteForm = () => {
           variant="standard"
           inputRef={paletteNameInput}
         />
+        <TextField
+          id="standard-basic"
+          label="이모지"
+          variant="standard"
+          inputRef={paletteEmojiInput}
+          onFocus={focusHandler}
+        />
+
+        {isFocused && <EmojiPicker />}
+
         <Button variant="outlined" type="submit">
           만들기
         </Button>
