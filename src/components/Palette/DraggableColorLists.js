@@ -40,6 +40,10 @@ const DraggableColorLists = (props) => {
   };
 
   const addColorClickHandler = (dataIndex) => {
+    if (colors.length === 10) {
+      alert("최대 10개 까지 추가할 수 있습니다.");
+      return;
+    }
     let targetScaleColor;
     if (colors[dataIndex + 1] === undefined) {
       targetScaleColor = "#000000";

@@ -31,6 +31,7 @@ const NewPaletteForm = (props) => {
   ]);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [enteredEmoji, setEnteredEmoji] = useState("");
   const colorsCtx = useContext(ColorsContext);
 
   const paletteNameInput = useRef();
@@ -87,6 +88,7 @@ const NewPaletteForm = (props) => {
         noValidate
         autoComplete="off"
         onSubmit={(e) => savePaletteHandler(e)}
+        className={styles["color-form"]}
       >
         <TextField
           id="standard-basic"
@@ -100,13 +102,19 @@ const NewPaletteForm = (props) => {
           variant="standard"
           inputRef={paletteEmojiInput}
           onFocus={focusHandler}
+          value={enteredEmoji}
         />
-
-        {isFocused && <EmojiPicker />}
-
         <Button variant="outlined" type="submit">
           만들기
         </Button>
+
+        {isFocused && (
+          <EmojiPicker
+            onEmojiSelect={(e) => {
+              setEnteredEmoji(e.native);
+            }}
+          />
+        )}
       </Box>
     </div>
   );
