@@ -11,7 +11,7 @@ const Palette = (props) => {
 
   const { colors, emoji, id, paletteName } = props.palette;
 
-  console.log(colors);
+  // console.log(colors);
 
   const levelChangeHandler = (sliderLevel) => {
     console.log(sliderLevel);
@@ -33,9 +33,9 @@ const Palette = (props) => {
         onChangeFormat={formatChangeHandler}
       />
       <div className={styles["palette-colors"]}>
-        {colors[level].map((color) => (
+        {colors[level].map((color, index) => (
           <ColorContainer
-            key={color.color}
+            key={index}
             colorName={color.name}
             colorCode={color[colorFormat]}
             textColor={color.textColor}

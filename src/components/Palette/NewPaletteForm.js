@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import styles from "./NewPaletteForm.module.css";
 
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 
 import DraggableColorLists from "./DraggableColorLists";
@@ -50,12 +50,13 @@ const NewPaletteForm = (props) => {
     const newPalette = {
       paletteName: paletteNameInput.current.value,
       id: paletteNameInput.current.value,
-      emoji: "🎨",
+      emoji: paletteEmojiInput.current.value,
       colors: colors,
     };
     colorsCtx.addPalette(newPalette);
 
     paletteNameInput.current.value = "";
+    paletteEmojiInput.current.value = "";
   };
 
   const outClickHandler = (e) => {
@@ -68,6 +69,11 @@ const NewPaletteForm = (props) => {
 
   const focusHandler = () => {
     setIsFocused(true);
+  };
+
+  const blurHandler = () => {
+    // setIsFocused(false);
+    console.log("first");
   };
 
   return (
@@ -90,16 +96,14 @@ const NewPaletteForm = (props) => {
         onSubmit={(e) => savePaletteHandler(e)}
         className={styles["color-form"]}
       >
-        <TextField
+        <Input
           id="standard-basic"
-          label="팔레트 명"
-          variant="standard"
+          placeholder="팔레트 이름"
           inputRef={paletteNameInput}
         />
-        <TextField
+        <Input
           id="standard-basic"
-          label="이모지"
-          variant="standard"
+          placeholder="이모지"
           inputRef={paletteEmojiInput}
           onFocus={focusHandler}
           value={enteredEmoji}
