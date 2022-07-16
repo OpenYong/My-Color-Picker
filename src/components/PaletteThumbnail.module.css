@@ -7,8 +7,16 @@
   margin: 0 auto;
 }
 
-.palette-thumbnail {
+.palette {
   padding: 1rem;
+}
+
+.palette-title {
+  margin: 1rem 0;
+  color: #373737;
+  font-size: 1.25rem;
+}
+
+.palette-thumbnail {
   width: 100%;
-  height: 100%;
 }

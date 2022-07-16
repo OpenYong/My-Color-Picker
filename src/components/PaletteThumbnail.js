@@ -9,13 +9,17 @@ const PaletteThumbnail = (props) => {
 
   return (
     <div className={styles["container"]}>
-      {paletteList.map((palette) => (
-        <Link to={`palette/${palette.id}`} key={palette.id}>
-          <div className={styles["palette-thumbnail"]}>
-            <h2>{palette.paletteName}</h2>
-            <MiniPalette id={palette.id} colors={palette.colors} />
-          </div>
-        </Link>
+      {paletteList.map((item) => (
+        <div className={styles.palette}>
+          <h2 className={styles["palette-title"]}>
+            {item.paletteName} {item.emoji}
+          </h2>
+          <Link to={`palette/${item.id}`} key={item.id}>
+            <div className={styles["palette-thumbnail"]}>
+              <MiniPalette id={item.id} colors={item.colors} />
+            </div>
+          </Link>
+        </div>
       ))}
     </div>
   );

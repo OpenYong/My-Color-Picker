@@ -34,4 +34,6 @@
   background-color: #d61c4e;
   color: #fff;
   border-radius: 5px;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
 }
