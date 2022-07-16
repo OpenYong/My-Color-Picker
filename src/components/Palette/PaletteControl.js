@@ -2,34 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import styles from "./Navbar.module.css";
+import styles from "./PaletteControl.module.css";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
-const Navbar = (props) => {
-  const { level, colorFormat, onChangeLevel, onChangeFormat } = props;
+const PaletteControl = (props) => {
+  const {
+    level,
+    colorFormat,
+    onChangeLevel,
+    onChangeFormat,
+    paletteName,
+    emoji,
+  } = props;
 
   const selectChangeHandler = (event) => {
     onChangeFormat(event.target.value);
   };
 
   return (
-    <header className={styles.navbar}>
-      <div className={styles.logo}>
-        <Link to={"/"}>My Colors</Link>
-      </div>
+    <div className={styles["palette-control"]}>
+      <h1 className={styles["palette-title"]}>
+        {paletteName}
+        {"  "}
+        {emoji}
+      </h1>
       <div className={styles["control-container"]}>
         <div className={styles.slider}>
-          <span>쉐도우 : {level}</span>
+          <span>컬러 쉐도우 : {level}</span>
           <Slider
             defaultValue={level}
             min={100}
             max={900}
             step={100}
-            onAfterChange={(value) => onChangeLevel(value)}
+            onChange={(value) => onChangeLevel(value)}
             trackStyle={{
               backgroundColor: "#90CAF9",
               height: 8,
@@ -59,8 +68,8 @@ const Navbar = (props) => {
           </FormControl>
         </Box>
       </div>
-    </header>
+    </div>
   );
 };
 
-export default Navbar;
+export default PaletteControl;

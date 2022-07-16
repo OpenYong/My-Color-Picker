@@ -8,3 +8,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
+.palette-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}

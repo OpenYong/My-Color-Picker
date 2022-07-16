@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ColorContainer from "./ColorContainer";
+import ColorContainer from "../ColorContainer";
 import styles from "./Palette.module.css";
-import Navbar from "./UI/Navbar";
-import CustomSnackbar from "./UI/CustomSnackbar";
+import PaletteControl from "./PaletteControl";
+import CustomSnackbar from "../UI/CustomSnackbar";
 
 const Palette = (props) => {
   const [level, setLevel] = useState(500);
@@ -11,10 +11,7 @@ const Palette = (props) => {
 
   const { colors, emoji, id, paletteName } = props.palette;
 
-  // console.log(colors);
-
   const levelChangeHandler = (sliderLevel) => {
-    console.log(sliderLevel);
     setLevel(sliderLevel);
   };
 
@@ -26,11 +23,13 @@ const Palette = (props) => {
   return (
     <div className={styles.palette}>
       <CustomSnackbar open={isSanckbarOpen} setOpen={setIsSanckbarOpen} />
-      <Navbar
+      <PaletteControl
         level={level}
         colorFormat={colorFormat}
         onChangeLevel={levelChangeHandler}
         onChangeFormat={formatChangeHandler}
+        paletteName={paletteName}
+        emoji={emoji}
       />
       <div className={styles["palette-colors"]}>
         {colors[level].map((color, index) => (
@@ -38,7 +37,6 @@ const Palette = (props) => {
             key={index}
             colorName={color.name}
             colorCode={color[colorFormat]}
-            textColor={color.textColor}
           />
         ))}
       </div>

@@ -1,0 +1,23 @@
+.palette-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.control-container {
+  display: flex;
+}
+
+.palette-title {
+  font-size: 1.25rem;
+}
+
+.slider {
+  width: 15rem;
+  margin: 1rem;
+}
+
+.select {
+  width: 5rem;
+}

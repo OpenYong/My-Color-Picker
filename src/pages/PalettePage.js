@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import Palette from "../components/Palette";
+import Header from "../components/Layout/Header";
+import Palette from "../components/Palette/Palette";
 import dummyData from "../dummy-data";
 import ColorsContext from "../store/colors-context";
 import { generatePalette } from "../util/colorHelper";
