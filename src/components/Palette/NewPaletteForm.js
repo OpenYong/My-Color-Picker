@@ -9,6 +9,7 @@ import DraggableColorLists from "./DraggableColorLists";
 import EmojiPicker from "../EmojiPicker";
 
 import ColorsContext from "../../store/colors-context";
+import { useNavigate } from "react-router-dom";
 
 const NewPaletteForm = (props) => {
   const [colors, setColors] = useState([
@@ -39,10 +40,10 @@ const NewPaletteForm = (props) => {
   const newPaletteInput = useRef();
   const hexColorPicker = useRef();
 
+  const navigate = useNavigate();
+
   const savePaletteHandler = (e) => {
     e.preventDefault();
-    console.log(paletteEmojiInput.current === document.activeElement);
-    console.log(document.activeElement);
 
     if (paletteNameInput.current.value === "") {
       return;
@@ -57,6 +58,8 @@ const NewPaletteForm = (props) => {
 
     paletteNameInput.current.value = "";
     paletteEmojiInput.current.value = "";
+
+    navigate("../", { replace: true });
   };
 
   const outClickHandler = (e) => {
@@ -69,11 +72,6 @@ const NewPaletteForm = (props) => {
 
   const focusHandler = () => {
     setIsFocused(true);
-  };
-
-  const blurHandler = () => {
-    // setIsFocused(false);
-    console.log("first");
   };
 
   return (

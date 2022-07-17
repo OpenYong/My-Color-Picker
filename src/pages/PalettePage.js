@@ -18,6 +18,7 @@ const PalettePage = () => {
 
   return (
     <div>
+      <Header />
       <Palette palette={generatePalette(selectedPalette)} />
     </div>
   );

@@ -12,6 +12,34 @@
   position: relative;
 }
 
+.color-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.color-info__code {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.text-color--white {
+  color: #fff;
+}
+
+.color-info__name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  opacity: 0.6;
+}
+
 .color-container__right {
   opacity: 0;
   transition: opacity 300ms ease-in;
@@ -27,7 +55,8 @@
   opacity: 1;
 }
 
-.add-btn {
+.add-btn,
+.drag-btn {
   justify-content: center;
   display: flex;
   align-items: center;
@@ -35,7 +64,8 @@
   top: 50%;
   width: 2rem;
   height: 2rem;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
   transform: scale(1);
   transition: transform 300ms ease-in;
   border-radius: 50%;
@@ -45,4 +75,8 @@
 
 .add-btn:hover {
   transform: scale(1.2);
+}
+
+.drag-btn {
+  border: none;
 }
