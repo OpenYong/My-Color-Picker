@@ -27,16 +27,21 @@ const DraggableColorLists = (props) => {
   } = props;
 
   const [clickedColorBox, setClickedColorBox] = useState();
+  const [enteredColorName, setEnteredColorName] = useState("");
 
   const colorContainerClickHandler = (dataIndex) => {
     setClickedColorBox(dataIndex);
     setIsPickerOpen(true);
   };
 
-  const pickerHandler = (color, clickedColorBox) => {
+  const pickerHandler = (color, clickedColorIndex) => {
     let newColorArray = [...colors];
-    newColorArray[clickedColorBox].color = color;
+    newColorArray[clickedColorIndex].color = color;
     onSetColors(newColorArray);
+  };
+
+  const nameChangeHandler = (event, clickedColorIndex) => {
+    setEnteredColorName(event.target.value);
   };
 
   const addColorClickHandler = (dataIndex) => {
@@ -86,6 +91,25 @@ const DraggableColorLists = (props) => {
     }
   };
 
+  const blurHandler = (e, clickedColorIndex) => {
+    const result = colors.findIndex((color) => color.name === enteredColorName);
+
+    if (result !== -1 && result !== clickedColorIndex) {
+      alert("색상 이름이 중복됩니다.");
+      return;
+    }
+
+    if (enteredColorName.trim() === "") {
+      alert("색상의 이름을 입력해주세요");
+      return;
+    }
+
+    let newColorArray = [...colors];
+    newColorArray[clickedColorIndex].name = enteredColorName;
+    onSetColors(newColorArray);
+    setIsPickerOpen(false);
+  };
+
   return (
     <>
       <div className={styles["new-palette"]} ref={newPaletteInputRef}>
@@ -124,6 +148,13 @@ const DraggableColorLists = (props) => {
             <HexColorInput
               color={colors[clickedColorBox].color}
               onChange={(color) => pickerHandler(color, clickedColorBox)}
+            />
+            <input
+              type="text"
+              placeholder="색상 이름"
+              value={enteredColorName}
+              onChange={(e) => nameChangeHandler(e, clickedColorBox)}
+              onBlur={(e) => blurHandler(e, clickedColorBox)}
             />
           </>
         )}

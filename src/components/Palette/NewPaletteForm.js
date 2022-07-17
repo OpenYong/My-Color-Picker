@@ -62,11 +62,13 @@ const NewPaletteForm = (props) => {
     navigate("../", { replace: true });
   };
 
+  // 컬러 피커가 열려있을때
+  // 색상 선택을 할 수 있도록 하기 위함
   const outClickHandler = (e) => {
     if (hexColorPicker.current.contains(e.target)) {
       setIsPickerOpen(true);
     } else if (!newPaletteInput.current.contains(e.target)) {
-      setIsPickerOpen(false);
+      // setIsPickerOpen(false);
     }
   };
 
