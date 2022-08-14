@@ -31,9 +31,9 @@ const CustomSnackbar = (props) => {
     <div>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={handleClose}
-        message="색상 포맷 변경됨"
+        message={message}
         action={action}
       />
     </div>

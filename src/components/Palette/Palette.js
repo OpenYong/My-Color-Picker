@@ -8,6 +8,7 @@ const Palette = (props) => {
   const [level, setLevel] = useState(500);
   const [colorFormat, setColorFormat] = useState("hex");
   const [isSanckbarOpen, setIsSanckbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const { colors, emoji, id, paletteName } = props.palette;
 
@@ -17,12 +18,21 @@ const Palette = (props) => {
 
   const formatChangeHandler = (formatValue) => {
     setColorFormat(formatValue);
+    snackbarHandler("색상 포맷 변경됨");
+  };
+
+  const snackbarHandler = (message) => {
     setIsSanckbarOpen(true);
+    setSnackbarMessage(message);
   };
 
   return (
     <div className={styles.palette}>
-      <CustomSnackbar open={isSanckbarOpen} setOpen={setIsSanckbarOpen} />
+      <CustomSnackbar
+        open={isSanckbarOpen}
+        setOpen={setIsSanckbarOpen}
+        message={snackbarMessage}
+      />
       <PaletteControl
         level={level}
         colorFormat={colorFormat}
@@ -37,6 +47,7 @@ const Palette = (props) => {
             key={index}
             colorName={color.name}
             colorCode={color[colorFormat]}
+            onSnackbarChange={snackbarHandler}
           />
         ))}
       </div>

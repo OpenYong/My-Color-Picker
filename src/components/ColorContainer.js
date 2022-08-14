@@ -5,13 +5,14 @@ import chroma from "chroma-js";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ColorContainer = (props) => {
-  const { colorName, colorCode } = props;
+  const { colorName, colorCode, onSnackbarChange } = props;
   const [isPicked, setIsPicked] = useState(false);
 
   const pickedColorInput = useRef();
 
   const onChangeHandler = () => {
     setIsPicked(pickedColorInput.current.checked);
+    onSnackbarChange(`클립보드에 복사 - ${colorCode}`);
   };
 
   const onBlurHandler = () => {
