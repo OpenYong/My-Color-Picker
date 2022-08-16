@@ -4,6 +4,7 @@
   overflow: hidden;
   height: 10rem;
   position: relative;
+  box-shadow: 0px 5px 30px 2px rgb(0 0 0 / 20%);
 }
 
 .color-container {

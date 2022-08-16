@@ -27,9 +27,32 @@ const DraggableColorContainer = (props) => {
     >
       <div
         className={styles["color-background"]}
-        onClick={() => onColorPick(dataIndex)}
+        onClick={(e) => onColorPick(dataIndex)}
         style={{ backgroundColor: color }}
       >
+        <div className={styles["color-container__right"]}>
+          <button
+            className={styles["add-btn"]}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddColor(dataIndex);
+            }}
+          >
+            +
+          </button>
+          <button
+            className={styles["add-btn"]}
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemoveColor(dataIndex);
+            }}
+          >
+            -
+          </button>
+          <button className={styles["drag-btn"]} {...listeners}>
+            이동
+          </button>
+        </div>
         <div className={styles["color-info"]}>
           <span
             className={styles["color-info__code"]}
@@ -46,23 +69,6 @@ const DraggableColorContainer = (props) => {
             {name}
           </span>
         </div>
-      </div>
-      <div className={styles["color-container__right"]}>
-        <div
-          className={styles["add-btn"]}
-          onClick={() => onAddColor(dataIndex)}
-        >
-          +
-        </div>
-        <div
-          className={styles["add-btn"]}
-          onClick={() => onRemoveColor(dataIndex)}
-        >
-          -
-        </div>
-        <button className={styles["drag-btn"]} {...listeners}>
-          이동
-        </button>
       </div>
     </div>
   );

@@ -43,12 +43,13 @@
 .color-container__right {
   opacity: 0;
   transition: opacity 300ms ease-in;
-  width: 2rem;
+  width: 100%;
   height: 100%;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
 }
 
 .color-container__right:hover {
@@ -70,13 +71,15 @@
   transition: transform 300ms ease-in;
   border-radius: 50%;
   z-index: 100;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0.5rem;
+  cursor: pointer;
 }
 
 .add-btn:hover {
   transform: scale(1.2);
 }
 
+.add-btn,
 .drag-btn {
   border: none;
 }
