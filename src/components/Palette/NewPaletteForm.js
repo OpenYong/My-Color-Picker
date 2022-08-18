@@ -12,24 +12,7 @@ import ColorsContext from "../../store/colors-context";
 import { useNavigate } from "react-router-dom";
 
 const NewPaletteForm = (props) => {
-  const [colors, setColors] = useState([
-    {
-      name: "Your Color 1",
-      color: "#aabbcc",
-    },
-    {
-      name: "Your Color 2",
-      color: "#373737",
-    },
-    {
-      name: "Your Color 3",
-      color: "#C15555",
-    },
-    {
-      name: "Your Color 4",
-      color: "#F1C7C7",
-    },
-  ]);
+  const [colors, setColors] = useState(props.initialColors);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [enteredEmoji, setEnteredEmoji] = useState("");

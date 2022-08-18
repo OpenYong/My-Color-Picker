@@ -1,12 +1,13 @@
 .palette {
+  width: 90%;
   height: 100vh;
+  padding: 0 3rem;
+  margin: 0 auto;
 }
 
 .palette-colors {
   height: 80%;
-  width: 90%;
-  margin: 0 auto;
-  /* padding: 1rem; */
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   box-shadow: 0 20px 20px rgb(0 0 0 / 20%);

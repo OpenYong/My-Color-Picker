@@ -12,7 +12,7 @@ const ColorContainer = (props) => {
 
   const onChangeHandler = () => {
     setIsPicked(pickedColorInput.current.checked);
-    onSnackbarChange(`클립보드에 복사 - ${colorCode}`);
+    onSnackbarChange(`클립보드에 복사됨`);
   };
 
   const onBlurHandler = () => {

@@ -27,7 +27,20 @@
   opacity: 1;
 }
 
-.delete-palette__btn {
+.delete-palette__btn--update {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 2.5rem;
+  border: 1px solid lightgray;
+  background-color: #edb135;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  font-size: 12px;
+}
+
+.delete-palette__btn--remove {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
@@ -37,6 +50,7 @@
   border-radius: 5px;
   cursor: pointer;
   padding: 0.25em 0.5em;
+  font-size: 12px;
 }
 
 .delete-palette__btn:hover {
