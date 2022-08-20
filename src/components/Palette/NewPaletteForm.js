@@ -12,13 +12,16 @@ import ColorsContext from "../../store/colors-context";
 import { useNavigate } from "react-router-dom";
 
 const NewPaletteForm = (props) => {
-  const [colors, setColors] = useState(props.initialColors);
+  const [colors, setColors] = useState(props.selectedPalette.colors);
+  const [enteredName, setEnteredName] = useState(
+    props.selectedPalette.paletteName
+  );
+
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [enteredEmoji, setEnteredEmoji] = useState("");
   const colorsCtx = useContext(ColorsContext);
 
-  const paletteNameInput = useRef();
   const paletteEmojiInput = useRef();
   const newPaletteInput = useRef();
   const hexColorPicker = useRef();
@@ -28,18 +31,18 @@ const NewPaletteForm = (props) => {
   const savePaletteHandler = (e) => {
     e.preventDefault();
 
-    if (paletteNameInput.current.value === "") {
+    if (enteredName === "") {
       return;
     }
     const newPalette = {
-      paletteName: paletteNameInput.current.value,
-      id: paletteNameInput.current.value,
+      paletteName: enteredName.current.value,
+      id: enteredName.current.value,
       emoji: paletteEmojiInput.current.value,
       colors: colors,
     };
     colorsCtx.addPalette(newPalette);
 
-    paletteNameInput.current.value = "";
+    setEnteredName("");
     paletteEmojiInput.current.value = "";
 
     navigate("../", { replace: true });
@@ -57,6 +60,10 @@ const NewPaletteForm = (props) => {
 
   const focusHandler = () => {
     setIsFocused(true);
+  };
+
+  const nameChangeHandler = (e) => {
+    setEnteredName(e.target.value);
   };
 
   return (
@@ -82,7 +89,8 @@ const NewPaletteForm = (props) => {
         <Input
           id="standard-basic"
           placeholder="팔레트 이름"
-          inputRef={paletteNameInput}
+          value={enteredName}
+          onChange={nameChangeHandler}
         />
         <Input
           id="standard-basic"

@@ -17,11 +17,13 @@ const UpdatePalettePage = () => {
   );
   const selectedPalette = colorsCtx.colors[indexOfColors];
 
+  console.log(selectedPalette);
+
   return (
     <div>
       <Header />
       <Nav />
-      <NewPaletteForm initialColors={selectedPalette.colors} />
+      <NewPaletteForm selectedPalette={selectedPalette} />
     </div>
   );
 };
