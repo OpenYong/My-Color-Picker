@@ -5,6 +5,7 @@ import dummyData from "../dummy-data";
 const ColorsContext = React.createContext({
   colors: dummyData,
   addPalette: (palette) => {},
+  updatePalette: (id, palette) => {},
   removePalette: (id) => {},
 });
 
@@ -16,6 +17,20 @@ const colorsReducer = (state, action) => {
   if (action.type === "ADD_PALETTE") {
     let updatedColors;
     updatedColors = state.colors.concat(action.palette);
+
+    return {
+      colors: updatedColors,
+    };
+  }
+
+  if (action.type === "UPDATE_PALETTE") {
+    let updatedColors = [...state.colors];
+
+    const indexOfColors = state.colors.findIndex(
+      (color) => color.id === action.id
+    );
+
+    updatedColors[indexOfColors] = action.palette;
 
     return {
       colors: updatedColors,
@@ -49,6 +64,10 @@ export const ColorsProvider = (props) => {
     dispatchColorAction({ type: "ADD_PALETTE", palette });
   };
 
+  const updatePaletteHandler = (id, palette) => {
+    dispatchColorAction({ type: "UPDATE_PALETTE", id, palette });
+  };
+
   const removePaletteHandler = (id) => {
     dispatchColorAction({ type: "REMOVE_PALETTE", id });
   };
@@ -57,6 +76,7 @@ export const ColorsProvider = (props) => {
     colors: colorState.colors,
     addPalette: addPaletteHandler,
     removePalette: removePaletteHandler,
+    updatePalette: updatePaletteHandler,
   };
 
   return (

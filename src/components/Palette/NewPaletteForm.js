@@ -12,17 +12,15 @@ import ColorsContext from "../../store/colors-context";
 import { useNavigate } from "react-router-dom";
 
 const NewPaletteForm = (props) => {
-  const [colors, setColors] = useState(props.selectedPalette.colors);
-  const [enteredName, setEnteredName] = useState(
-    props.selectedPalette.paletteName
-  );
+  const { selectedPalette, isUpdating } = props;
+  const [colors, setColors] = useState(selectedPalette.colors);
+
+  const [palette, setPalette] = useState(selectedPalette);
 
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [enteredEmoji, setEnteredEmoji] = useState("");
   const colorsCtx = useContext(ColorsContext);
 
-  const paletteEmojiInput = useRef();
   const newPaletteInput = useRef();
   const hexColorPicker = useRef();
 
@@ -31,19 +29,25 @@ const NewPaletteForm = (props) => {
   const savePaletteHandler = (e) => {
     e.preventDefault();
 
-    if (enteredName === "") {
+    if (palette.paletteName === "") {
       return;
     }
-    const newPalette = {
-      paletteName: enteredName.current.value,
-      id: enteredName.current.value,
-      emoji: paletteEmojiInput.current.value,
-      colors: colors,
-    };
-    colorsCtx.addPalette(newPalette);
+    let newPalette;
 
-    setEnteredName("");
-    paletteEmojiInput.current.value = "";
+    if (!isUpdating) {
+      newPalette = {
+        ...palette,
+        colors: colors,
+        id: palette.paletteName,
+      };
+      colorsCtx.addPalette(newPalette);
+    } else {
+      newPalette = {
+        ...palette,
+        colors: colors,
+      };
+      colorsCtx.updatePalette(newPalette.id, newPalette);
+    }
 
     navigate("../", { replace: true });
   };
@@ -62,9 +66,15 @@ const NewPaletteForm = (props) => {
     setIsFocused(true);
   };
 
-  const nameChangeHandler = (e) => {
-    setEnteredName(e.target.value);
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+
+    setPalette((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+  console.log(palette);
 
   return (
     <div className={styles["main-container"]} onClick={outClickHandler}>
@@ -89,15 +99,17 @@ const NewPaletteForm = (props) => {
         <Input
           id="standard-basic"
           placeholder="팔레트 이름"
-          value={enteredName}
-          onChange={nameChangeHandler}
+          name="paletteName"
+          value={palette.paletteName}
+          onChange={changeHandler}
         />
         <Input
           id="standard-basic"
           placeholder="이모지"
-          inputRef={paletteEmojiInput}
+          name="emoji"
           onFocus={focusHandler}
-          value={enteredEmoji}
+          value={palette.emoji}
+          onChange={changeHandler}
         />
         <Button variant="outlined" type="submit">
           만들기
@@ -106,7 +118,10 @@ const NewPaletteForm = (props) => {
         {isFocused && (
           <EmojiPicker
             onEmojiSelect={(e) => {
-              setEnteredEmoji(e.native);
+              setPalette((prevState) => ({
+                ...prevState,
+                emoji: e.native,
+              }));
             }}
           />
         )}
