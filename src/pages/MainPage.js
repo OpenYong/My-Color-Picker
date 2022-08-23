@@ -6,6 +6,7 @@ import ColorsContext from "../store/colors-context";
 
 const MainPage = () => {
   const ColorsCtx = useContext(ColorsContext);
+  console.log(ColorsCtx.colors);
 
   return (
     <>

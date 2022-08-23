@@ -9,9 +9,16 @@ const ColorsContext = React.createContext({
   removePalette: (id) => {},
 });
 
-const defaultColorsState = {
-  colors: dummyData,
-};
+let defaultColorsState;
+if (!!localStorage.getItem("colors")) {
+  defaultColorsState = {
+    colors: JSON.parse(localStorage.getItem("colors")),
+  };
+} else {
+  defaultColorsState = {
+    colors: dummyData,
+  };
+}
 
 const colorsReducer = (state, action) => {
   if (action.type === "ADD_PALETTE") {
@@ -59,6 +66,8 @@ export const ColorsProvider = (props) => {
     colorsReducer,
     defaultColorsState
   );
+
+  localStorage.setItem("colors", JSON.stringify(colorState.colors));
 
   const addPaletteHandler = (palette) => {
     dispatchColorAction({ type: "ADD_PALETTE", palette });

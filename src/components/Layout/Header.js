@@ -20,7 +20,7 @@ const Header = () => {
       <header className={styles.header}>
         <div className={styles.logo}>
           <Link to={`/`}>
-            <h1>My Colors</h1>
+            <h1>MY COLORS</h1>
           </Link>
         </div>
         <div className={styles.buttons}>
