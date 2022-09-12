@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_colors=self.webpackChunkmy_colors||[]).push([[172],{4172:function(o,e,r){r.r(e);r(2791);var l=r(2609),c=r(5031),s=r(6962),a=r(184);e.default=function(){return(0,a.jsxs)("div",{children:[(0,a.jsx)(l.Z,{}),(0,a.jsx)(c.Z,{}),(0,a.jsx)(s.Z,{selectedPalette:{colors:[{name:"Your Color 1",color:"#aabbcc"},{name:"Your Color 2",color:"#373737"},{name:"Your Color 3",color:"#C15555"},{name:"Your Color 4",color:"#F1C7C7"}],emoji:"",id:"",paletteName:""}})]})}}}]);
+//# sourceMappingURL=172.162249e0.chunk.js.map

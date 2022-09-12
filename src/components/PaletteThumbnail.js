@@ -13,7 +13,7 @@ const PaletteThumbnail = (props) => {
         .slice()
         .reverse()
         .map((item) => (
-          <div className={styles.palette}>
+          <div className={styles.palette} key={item.id}>
             <h2 className={styles["palette-title"]}>
               {item.paletteName} {item.emoji}
             </h2>

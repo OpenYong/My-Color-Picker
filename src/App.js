@@ -13,7 +13,7 @@ function App() {
   return (
     <React.Fragment>
       <ColorsProvider>
-        <Suspense fallback={<p>Loading Layout</p>}>
+        <Suspense fallback={<p></p>}>
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/palette/new" element={<NewPalettePage />} />

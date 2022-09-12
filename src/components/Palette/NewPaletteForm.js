@@ -74,7 +74,6 @@ const NewPaletteForm = (props) => {
       [name]: value,
     }));
   };
-  console.log(palette);
 
   return (
     <div className={styles["main-container"]} onClick={outClickHandler}>
